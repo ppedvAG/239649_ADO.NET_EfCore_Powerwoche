@@ -19,9 +19,12 @@ try
     var empCount = cmd.ExecuteScalar();
     Console.WriteLine($"Es sind {empCount} Employees in der DB");
 
+    Console.WriteLine("Suche:");
+    var such = Console.ReadLine();
+
     var cmdGetAll = new SqlCommand();
     cmdGetAll.Connection = con;
-    cmdGetAll.CommandText = "SELECT * FROM Employees";
+    cmdGetAll.CommandText = "SELECT * FROM Employees WHERE FirstName LIKE '%" + such + "%'";
 
     var reader = cmdGetAll.ExecuteReader();
     while (reader.Read())
