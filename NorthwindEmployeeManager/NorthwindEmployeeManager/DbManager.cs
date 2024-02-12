@@ -65,17 +65,32 @@ namespace NorthwindEmployeeManager
         {
             var con = new SqlConnection(conString);
             con.Open();
+            var trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
 
-            foreach (var emp in GetAllEmployees())
+            try
             {
-                emp.BirthDate = emp.BirthDate.AddYears(1);
-                var cmd = new SqlCommand();
-                cmd.Connection=con;
-                cmd.CommandText = "UPDATE Employees SET BirthDate = @bDate WHERE EmployeeId=@id";
-                cmd.Parameters.AddWithValue("@id", emp.Id);
-                cmd.Parameters.AddWithValue("@bDate", emp.BirthDate);
-                cmd.ExecuteNonQuery();
+                foreach (var emp in GetAllEmployees())
+                {
+                    //if (emp.FirstName.StartsWith("M"))
+                        //throw new OutOfMemoryException();
+                   
+                    emp.BirthDate = emp.BirthDate.AddYears(1);
+                    var cmd = new SqlCommand();
+                    cmd.Connection = con;
+                    cmd.Transaction = trans;
+                    cmd.CommandText = "UPDATE Employees SET BirthDate = @bDate WHERE EmployeeId=@id";
+                    cmd.Parameters.AddWithValue("@id", emp.Id);
+                    cmd.Parameters.AddWithValue("@bDate", emp.BirthDate);
+                    cmd.ExecuteNonQuery();
+                }
             }
+            catch (Exception)
+            {
+                trans.Rollback();
+                throw;
+            }
+
+            trans.Commit();
 
             con.Close();
         }
