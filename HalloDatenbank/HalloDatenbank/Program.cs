@@ -23,7 +23,7 @@ try
 
     var cmdGetAll = new SqlCommand();
     cmdGetAll.Connection = con;
-    //cmdGetAll.CommandText = "SELECT * FROM Employees WHERE FirstName LIKE '%" + such + "%'"; NIE SO MACHEN -> SQL INJECTION
+    cmdGetAll.CommandText = "SELECT * FROM Employees WHERE FirstName LIKE '%" + such + "%'";//NIE SO MACHEN -> SQL INJECTION
     cmdGetAll.CommandText = "SELECT * FROM Employees WHERE FirstName LIKE '%'+@search+'%'";
     cmdGetAll.Parameters.AddWithValue("@search", such);
 

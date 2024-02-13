@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Diagnostics;
 
 namespace NorthwindEmployeeManager
 {
@@ -8,23 +9,54 @@ namespace NorthwindEmployeeManager
 
         internal void DeleteEmployee(Employee emp)
         {
-            var con = new SqlConnection(conString);
-            con.Open();
+            using (var con = new SqlConnection(conString))
+            {
+                con.Open();
 
-            var cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandText = "DELETE FROM Employees WHERE EmployeeId=@id";
-            cmd.Parameters.AddWithValue("@id", emp.Id);
+                using (var cmd = new SqlCommand())
+                {
+                    cmd.Connection = con;
+                    cmd.CommandText = "DELETE FROM Employees WHERE EmployeeId=@id";
+                    cmd.Parameters.AddWithValue("@id", emp.Id);
 
-            cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
+
+            }//con.Dispose();  //--> con.Close();
+
+            #region complete finally dispose
+            //var con = new SqlConnection(conString);
+            //try
+            //{
+            //    con.Open();
+
+            //    var cmd = new SqlCommand();
+            //    cmd.Connection = con;
+            //    cmd.CommandText = "DELETE FROM Employees WHERE EmployeeId=@id";
+            //    cmd.Parameters.AddWithValue("@id", emp.Id);
+
+            //    cmd.ExecuteNonQuery();
+
+            //    //con.Close();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.WriteLine(ex.Message);
+            //    throw;
+            //}
+            //finally
+            //{
+            //    con.Dispose();  //--> con.Close();
+            //}
+            #endregion
         }
 
         internal void AddNewEmployee(string firstName, string lastName, DateTime birthDate)
         {
-            var con = new SqlConnection(conString);
+            using var con = new SqlConnection(conString);
             con.Open();
 
-            var cmd = new SqlCommand();
+            using var cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandText = "INSERT INTO Employees (FirstName,LastName,BirthDate) VALUES (@fname,@lname,@bDate)";
             cmd.Parameters.AddWithValue("@fname", firstName);
@@ -32,19 +64,19 @@ namespace NorthwindEmployeeManager
             cmd.Parameters.AddWithValue("@bDate", birthDate);
 
             cmd.ExecuteNonQuery();
-        }
+        }// con.Dispose(), cmd.Dispose()
 
         internal IEnumerable<Employee> GetAllEmployees()
         {
             List<Employee> employees = new List<Employee>();
-            var con = new SqlConnection(conString);
+            using var con = new SqlConnection(conString);
             con.Open();
 
-            var cmdGetAll = new SqlCommand();
+            using var cmdGetAll = new SqlCommand();
             cmdGetAll.Connection = con;
             cmdGetAll.CommandText = "SELECT * FROM Employees";
 
-            var reader = cmdGetAll.ExecuteReader();
+            using var reader = cmdGetAll.ExecuteReader();
             while (reader.Read())
             {
                 employees.Add(new Employee()
@@ -56,43 +88,30 @@ namespace NorthwindEmployeeManager
                 });
             }
 
-            con.Close();
-
             return employees;
         }
 
         internal void AlleJüngerMachen()
         {
-            var con = new SqlConnection(conString);
+            using var con = new SqlConnection(conString);
             con.Open();
-            var trans = con.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+            using var trans = con.BeginTransaction();
 
-            try
+            foreach (var emp in GetAllEmployees())
             {
-                foreach (var emp in GetAllEmployees())
-                {
-                    //if (emp.FirstName.StartsWith("M"))
-                        //throw new OutOfMemoryException();
-                   
-                    emp.BirthDate = emp.BirthDate.AddYears(1);
-                    var cmd = new SqlCommand();
-                    cmd.Connection = con;
-                    cmd.Transaction = trans;
-                    cmd.CommandText = "UPDATE Employees SET BirthDate = @bDate WHERE EmployeeId=@id";
-                    cmd.Parameters.AddWithValue("@id", emp.Id);
-                    cmd.Parameters.AddWithValue("@bDate", emp.BirthDate);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception)
-            {
-                trans.Rollback();
-                throw;
-            }
+                if (emp.FirstName.StartsWith("M"))
+                    throw new OutOfMemoryException();
 
+                emp.BirthDate = emp.BirthDate.AddYears(1);
+                using var cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.Transaction = trans;
+                cmd.CommandText = "UPDATE Employees SET BirthDate = @bDate WHERE EmployeeId=@id";
+                cmd.Parameters.AddWithValue("@id", emp.Id);
+                cmd.Parameters.AddWithValue("@bDate", emp.BirthDate);
+                cmd.ExecuteNonQuery();
+            }
             trans.Commit();
-
-            con.Close();
         }
     }
 }
