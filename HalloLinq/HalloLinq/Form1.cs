@@ -110,7 +110,7 @@ namespace HalloLinq
         //extension Method
         public static int GetKW(this DateTime dt)
         {
-            return 7;
+            return 6;
         }
     }
 }
