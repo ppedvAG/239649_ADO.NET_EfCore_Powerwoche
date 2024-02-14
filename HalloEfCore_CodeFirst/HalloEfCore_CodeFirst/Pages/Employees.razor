@@ -13,6 +13,9 @@
             <th>Name</th>
             <th>BirthDate</th>
             <th>Job</th>
+            <th>Status</th>
+            <th>Actions</th>
+            <th>Departments</th>
             <th>Customers</th>
         </tr>
     </thead>
@@ -24,69 +27,69 @@
                 <td>@emp.Name</td>
                 <td>@emp.BirthDate</td>
                 <td>@emp.Job</td>
-                <td>@string.Join(" ,", emp.Customers.Select(x => $"{x.Name} ({x.Id})"))</td>
-             @*    <td>
-                    @{
-                        //manual loading
-                        var customer = con.Customers.Where(x => x.SupportAgent == emp);
-                        @string.Join(" ,", customer.Select(x => $"{x.Name} ({x.Id})"));
-                    }
-                </td> *@
-
-         @*        <td>
-                    @{
-                        //explizit loading  loading
-                        con.Entry(emp).Collection(x => x.Customers).Load();
-                        @string.Join(" ,", emp.Customers.Select(x => $"{x.Name} ({x.Id})"));
-                    }
-                </td> *@
+                <td>@con.Entry(emp).State</td>
+                <td>
+                    <button @onclick="@(()=> emp.BirthDate = emp.BirthDate.AddYears(1) )">🧟‍</button>
+                    <button @onclick="@(()=> con.Remove(emp))">🗑️</button>
+                    <button @onclick="@(()=> con.SaveChanges() )">💾</button>
+                </td>
+                <td>@string.Join(", ", emp.Departments.Select(x => x.Name))</td>
+                <td>@string.Join(", ", emp.Customers.Select(x => $"{x.Name} ({x.Id})"))</td>
+                @* <td>
+            @{
+            //manual loading
+            var customer = con.Customers.Where(x => x.SupportAgent == emp);
+            @string.Join(" ,", customer.Select(x => $"{x.Name} ({x.Id})"));
+            }
+            </td> *@
+                @* <td>
+            @{
+            //explizit loading loading
+            con.Entry(emp).Collection(x => x.Customers).Load();
+            @string.Join(" ,", emp.Customers.Select(x => $"{x.Name} ({x.Id})"));
+            }
+            </td> *@
             </tr>
         }
     </tbody>
 </table>
-
 @code {
     Employee[] employees;
-
     EfContext con = new EfContext();
-
     private void CreateDemoData()
     {
+        var dep1 = new Department() { Name = "Steine" };
+        var dep2 = new Department() { Name = "Holz" };
         var emps = new List<Employee>();
         for (int i = 0; i < 100; i++)
         {
-            emps.Add(new Employee()
+            var emp = new Employee()
                 {
                     Name = $"Fred {i:000}",
                     Job = "Macht Ding",
                     BirthDate = DateTime.Now.AddYears(-30).AddDays(i * 17)
-                });
+                };
+            if (i % 2 == 0)
+                emp.Departments.Add(dep1);
+            if (i % 3 == 0)
+                emp.Departments.Add(dep2);
+            emps.Add(emp);
         }
-
         var c1 = new Customer() { Name = $"Wilma", BirthDate = DateTime.Now.AddYears(-22), SupportAgent = emps[32] };
         var c2 = new Customer() { Name = $"Barney", BirthDate = DateTime.Now.AddYears(-42), SupportAgent = emps[4] };
-
         con.Employees.AddRange(emps);
         con.Customers.Add(c1);
         con.Customers.Add(c2);
-
         con.SaveChanges();
     }
-
     protected override async Task OnInitializedAsync()
     {
         con.Database.EnsureCreated();
-
         //eager Loading
-         //employees = con.Employees.Include(x => x.Customers).ToArray();
-
-        employees = con.Employees.ToArray();
-
+        employees = con.Employees.Include(x => x.Customers).Include(x => x.Departments).ToArray();
+        //employees = con.Employees.ToArray();
     }
-
-
     protected override void OnInitialized()
     {
-
     }
 }
