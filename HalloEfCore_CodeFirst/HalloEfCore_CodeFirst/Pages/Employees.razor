@@ -1,0 +1,92 @@
+﻿@page "/Employees"
+@using HalloEfCore_CodeFirst.Data
+@using HalloEfCore_CodeFirst.Model
+@using Microsoft.EntityFrameworkCore
+<h3>Employees</h3>
+
+<button @onclick="CreateDemoData">Demo daten</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>BirthDate</th>
+            <th>Job</th>
+            <th>Customers</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in employees)
+        {
+            <tr>
+                <td>@emp.Id</td>
+                <td>@emp.Name</td>
+                <td>@emp.BirthDate</td>
+                <td>@emp.Job</td>
+                <td>@string.Join(" ,", emp.Customers.Select(x => $"{x.Name} ({x.Id})"))</td>
+             @*    <td>
+                    @{
+                        //manual loading
+                        var customer = con.Customers.Where(x => x.SupportAgent == emp);
+                        @string.Join(" ,", customer.Select(x => $"{x.Name} ({x.Id})"));
+                    }
+                </td> *@
+
+         @*        <td>
+                    @{
+                        //explizit loading  loading
+                        con.Entry(emp).Collection(x => x.Customers).Load();
+                        @string.Join(" ,", emp.Customers.Select(x => $"{x.Name} ({x.Id})"));
+                    }
+                </td> *@
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    Employee[] employees;
+
+    EfContext con = new EfContext();
+
+    private void CreateDemoData()
+    {
+        var emps = new List<Employee>();
+        for (int i = 0; i < 100; i++)
+        {
+            emps.Add(new Employee()
+                {
+                    Name = $"Fred {i:000}",
+                    Job = "Macht Ding",
+                    BirthDate = DateTime.Now.AddYears(-30).AddDays(i * 17)
+                });
+        }
+
+        var c1 = new Customer() { Name = $"Wilma", BirthDate = DateTime.Now.AddYears(-22), SupportAgent = emps[32] };
+        var c2 = new Customer() { Name = $"Barney", BirthDate = DateTime.Now.AddYears(-42), SupportAgent = emps[4] };
+
+        con.Employees.AddRange(emps);
+        con.Customers.Add(c1);
+        con.Customers.Add(c2);
+
+        con.SaveChanges();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        con.Database.EnsureCreated();
+
+        //eager Loading
+         //employees = con.Employees.Include(x => x.Customers).ToArray();
+
+        employees = con.Employees.ToArray();
+
+    }
+
+
+    protected override void OnInitialized()
+    {
+
+    }
+}
