@@ -25,6 +25,10 @@ namespace HalloEfCore_CodeFirst.Model
     public class Employee : Person
     {
         public string Job { get; set; } = string.Empty;
+        public string Schreibtischnummer { get; set; } = string.Empty;
+        public bool MitLampe { get; set; }
+
+        public bool Stuhl { get; set; }
         public virtual ICollection<Customer> Customers { get; set; } = new HashSet<Customer>();
         public virtual ICollection<Department> Departments { get; set; } = new HashSet<Department>();
     }

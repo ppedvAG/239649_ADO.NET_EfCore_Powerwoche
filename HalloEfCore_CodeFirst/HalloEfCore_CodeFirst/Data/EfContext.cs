@@ -6,6 +6,11 @@ namespace HalloEfCore_CodeFirst.Data
 {
     public class EfContext : DbContext
     {
+        public EfContext()
+        {
+            //this.Database.Migrate();
+        }
+
         public DbSet<Person> People { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
@@ -14,6 +19,7 @@ namespace HalloEfCore_CodeFirst.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var conString = "Server=(localdb)\\mssqllocaldb;Database=EfCore_CodeFirst;Trusted_Connection=true;";
+            //var conString = "Server=(localdb)\\mssqllocaldb;Database=EfCore_CodeFirst;User=aaa;Password=aaa;";
             optionsBuilder.UseLazyLoadingProxies().UseSqlServer(conString).LogTo(Console.WriteLine).EnableSensitiveDataLogging(true);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
