@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using AdventureWorksBlazorApp.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AdventureWorksBlazorApp.Data;
+namespace ppedv.AdventureApp.Data.EfCore;
 
 public partial class AdventureWorks2019Context : DbContext
 {

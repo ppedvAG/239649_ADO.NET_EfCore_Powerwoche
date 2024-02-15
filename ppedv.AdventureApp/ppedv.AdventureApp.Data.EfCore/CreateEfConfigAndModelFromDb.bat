@@ -1,0 +1,1 @@
+dotnet ef dbcontext scaffold "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=AdventureWorks2019;Trusted_Connection=true;Encrypt=True;TrustServerCertificate=true" Microsoft.EntityFrameworkCore.SqlServer  --context-dir . --output-dir ..\ppedv.AdventureApp.Model\DomainModel --no-build --force
