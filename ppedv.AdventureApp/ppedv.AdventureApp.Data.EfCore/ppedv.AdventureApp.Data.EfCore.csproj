@@ -17,4 +17,8 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ppedv.AdventureApp.Model\ppedv.AdventureApp.Model.csproj" />
+  </ItemGroup>
+
 </Project>
