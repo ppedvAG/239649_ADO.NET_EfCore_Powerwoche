@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ppedv.AdventureApp.Data.EfCore;
+namespace ppedv.AdventureApp.Model.DomainModel;
 
 /// <summary>
 /// Individual products associated with a specific purchase order. See PurchaseOrderHeader.

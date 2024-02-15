@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ppedv.AdventureApp.Data.EfCore;
+namespace ppedv.AdventureApp.Model.DomainModel;
 
 /// <summary>
 /// Source of the ID that connects vendors, customers, and employees with address and contact information.

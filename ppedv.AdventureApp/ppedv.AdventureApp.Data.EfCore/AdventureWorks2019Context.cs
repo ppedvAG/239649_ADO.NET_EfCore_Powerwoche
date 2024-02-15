@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace ppedv.AdventureApp.Data.EfCore;
+namespace ppedv.AdventureApp.Model.DomainModel;
 
 public partial class AdventureWorks2019Context : DbContext
 {

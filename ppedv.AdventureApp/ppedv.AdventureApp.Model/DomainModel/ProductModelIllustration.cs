@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ppedv.AdventureApp.Data.EfCore;
+namespace ppedv.AdventureApp.Model.DomainModel;
 
 /// <summary>
 /// Cross-reference table mapping product models and illustrations.
