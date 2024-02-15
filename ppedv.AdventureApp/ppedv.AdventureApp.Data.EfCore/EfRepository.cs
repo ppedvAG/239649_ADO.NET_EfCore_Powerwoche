@@ -13,7 +13,10 @@ namespace ppedv.AdventureApp.Data.EfCore
             var builder = new DbContextOptionsBuilder<AdventureWorks2019Context>();
             builder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=AdventureWorks2019_DEV;Trusted_Connection=true;Encrypt=True;TrustServerCertificate=true");
             context = new AdventureWorks2019Context(builder.Options);
+           
         }
+
+
 
         public void Add<T>(T entity) where T : class
         {
