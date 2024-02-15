@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 
 namespace HalloEfCore_CodeFirst.Model
@@ -12,6 +13,7 @@ namespace HalloEfCore_CodeFirst.Model
         public DateTime BirthDate { get; set; }
     }
 
+    //[Table("Kunden")]
     public class Customer : Person
     {
         [MaxLength(55)]

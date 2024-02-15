@@ -1,0 +1,52 @@
+﻿@page "/products"
+@using AdventureWorksBlazorApp.Data
+@using AdventureWorksBlazorApp.Models
+@using System.Globalization
+@using Microsoft.EntityFrameworkCore;
+@inject AdventureWorks2019Context con;
+
+<h3>Products</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Product
+            </th>
+            <th>
+                Color
+            </th>
+            <th>
+                ListPrice
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in products)
+        {
+            <tr>
+                <td>@p.Name (@p.ProductNumber)</td>
+                <td>@p.Color</td>
+                <td>@p.ListPrice.ToString("c", new CultureInfo("en-US"))</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                   @p.ProductSubcategory?.ProductCategory?.Name ➡️ @p.ProductSubcategory?.Name                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@code {
+
+
+    List<Product> products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = con.Products.Include(x => x.ProductSubcategory).ThenInclude(x=>x.ProductCategory).ToList();
+    }
+
+}

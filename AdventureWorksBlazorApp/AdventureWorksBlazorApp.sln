@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34526.213
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureWorksBlazorApp", "AdventureWorksBlazorApp\AdventureWorksBlazorApp\AdventureWorksBlazorApp.csproj", "{7BFDC7A0-2E4B-4EF8-BF3F-60CF0EDC5D51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureWorksBlazorApp.Client", "AdventureWorksBlazorApp\AdventureWorksBlazorApp.Client\AdventureWorksBlazorApp.Client.csproj", "{D340C65A-0F49-4622-B5C2-CC577B1537E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BFDC7A0-2E4B-4EF8-BF3F-60CF0EDC5D51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BFDC7A0-2E4B-4EF8-BF3F-60CF0EDC5D51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BFDC7A0-2E4B-4EF8-BF3F-60CF0EDC5D51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BFDC7A0-2E4B-4EF8-BF3F-60CF0EDC5D51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D340C65A-0F49-4622-B5C2-CC577B1537E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D340C65A-0F49-4622-B5C2-CC577B1537E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D340C65A-0F49-4622-B5C2-CC577B1537E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D340C65A-0F49-4622-B5C2-CC577B1537E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E948DCC3-A461-4BF4-A230-184938204906}
+	EndGlobalSection
+EndGlobal
