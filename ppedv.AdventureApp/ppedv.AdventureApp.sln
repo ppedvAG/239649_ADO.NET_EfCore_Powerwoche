@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.AdventureApp.UI.Web",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.AdventureApp.UI.Web.Client", "ppedv.AdventureApp.UI.Web\ppedv.AdventureApp.UI.Web.Client\ppedv.AdventureApp.UI.Web.Client.csproj", "{0BF4D818-13BD-488E-925D-1AE0688DD318}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.AdventureApp.Logic.Tests", "ppedv.AdventureApp.Logic.Tests\ppedv.AdventureApp.Logic.Tests.csproj", "{E42A6605-A4BA-456D-BBC1-3EF778AF600B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{0BF4D818-13BD-488E-925D-1AE0688DD318}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BF4D818-13BD-488E-925D-1AE0688DD318}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BF4D818-13BD-488E-925D-1AE0688DD318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E42A6605-A4BA-456D-BBC1-3EF778AF600B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E42A6605-A4BA-456D-BBC1-3EF778AF600B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E42A6605-A4BA-456D-BBC1-3EF778AF600B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E42A6605-A4BA-456D-BBC1-3EF778AF600B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
