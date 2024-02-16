@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ppedv.AdventureApp.Model.Data.EfCore;
 
 namespace ppedv.AdventureApp.Data.EfCore.Tests
 {

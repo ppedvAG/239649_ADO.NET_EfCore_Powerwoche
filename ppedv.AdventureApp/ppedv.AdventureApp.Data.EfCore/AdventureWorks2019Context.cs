@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using ppedv.AdventureApp.Model.DomainModel;
 
-namespace ppedv.AdventureApp.Model.DomainModel;
+namespace ppedv.AdventureApp.Model.Data.EfCore;
 
 public partial class AdventureWorks2019Context : DbContext
 {

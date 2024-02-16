@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ppedv.AdventureApp.Model.Contracts;
-using ppedv.AdventureApp.Model.DomainModel;
+using ppedv.AdventureApp.Model.Data.EfCore;
 
 namespace ppedv.AdventureApp.Data.EfCore
 {
@@ -13,7 +13,6 @@ namespace ppedv.AdventureApp.Data.EfCore
             var builder = new DbContextOptionsBuilder<AdventureWorks2019Context>();
             builder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=AdventureWorks2019_DEV;Trusted_Connection=true;Encrypt=True;TrustServerCertificate=true");
             context = new AdventureWorks2019Context(builder.Options);
-           
         }
 
 
