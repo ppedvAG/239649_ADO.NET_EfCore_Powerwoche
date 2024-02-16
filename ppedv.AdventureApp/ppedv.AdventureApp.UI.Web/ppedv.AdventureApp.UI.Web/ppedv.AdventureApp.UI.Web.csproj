@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>d1bdfe1b-4787-42ce-ae0a-1c8d3190795f</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ppedv.AdventureApp.Data.EfCore\ppedv.AdventureApp.Data.EfCore.csproj" />
+    <ProjectReference Include="..\..\ppedv.AdventureApp.Logic\ppedv.AdventureApp.Logic.csproj" />
+    <ProjectReference Include="..\..\ppedv.AdventureApp.Model\ppedv.AdventureApp.Model.csproj" />
+    <ProjectReference Include="..\ppedv.AdventureApp.UI.Web.Client\ppedv.AdventureApp.UI.Web.Client.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.2" />
+  </ItemGroup>
+
+</Project>

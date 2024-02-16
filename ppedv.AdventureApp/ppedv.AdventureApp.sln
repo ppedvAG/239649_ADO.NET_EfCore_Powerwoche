@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34526.213
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.AdventureApp.Model", "ppedv.AdventureApp.Model\ppedv.AdventureApp.Model.csproj", "{3A9F7FA2-FE28-4C7C-A9A3-25EF73C88C02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.AdventureApp.Model", "ppedv.AdventureApp.Model\ppedv.AdventureApp.Model.csproj", "{3A9F7FA2-FE28-4C7C-A9A3-25EF73C88C02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.AdventureApp.Data.EfCore", "ppedv.AdventureApp.Data.EfCore\ppedv.AdventureApp.Data.EfCore.csproj", "{0BB118A0-AB2A-4BF3-80FA-54AFECCF61BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.AdventureApp.Data.EfCore", "ppedv.AdventureApp.Data.EfCore\ppedv.AdventureApp.Data.EfCore.csproj", "{0BB118A0-AB2A-4BF3-80FA-54AFECCF61BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.AdventureApp.Data.EfCore.Tests", "ppedv.AdventureApp.Data.EfCore.Tests\ppedv.AdventureApp.Data.EfCore.Tests.csproj", "{275FD263-45D6-4E4E-81EE-6579338694A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.AdventureApp.Data.EfCore.Tests", "ppedv.AdventureApp.Data.EfCore.Tests\ppedv.AdventureApp.Data.EfCore.Tests.csproj", "{275FD263-45D6-4E4E-81EE-6579338694A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.AdventureApp.UI.DevConsole", "ppedv.AdventureApp.UI.DevConsole\ppedv.AdventureApp.UI.DevConsole.csproj", "{3543D248-9A41-4655-8C6D-BEFA70FDC9FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.AdventureApp.UI.DevConsole", "ppedv.AdventureApp.UI.DevConsole\ppedv.AdventureApp.UI.DevConsole.csproj", "{3543D248-9A41-4655-8C6D-BEFA70FDC9FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.AdventureApp.Logic", "ppedv.AdventureApp.Logic\ppedv.AdventureApp.Logic.csproj", "{B9332DB6-118F-4959-88BE-D55DEC628D67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.AdventureApp.Logic", "ppedv.AdventureApp.Logic\ppedv.AdventureApp.Logic.csproj", "{B9332DB6-118F-4959-88BE-D55DEC628D67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.AdventureApp.UI.Web", "ppedv.AdventureApp.UI.Web\ppedv.AdventureApp.UI.Web\ppedv.AdventureApp.UI.Web.csproj", "{77AF4C80-7A6A-49D5-B473-F71ED92E8C9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.AdventureApp.UI.Web.Client", "ppedv.AdventureApp.UI.Web\ppedv.AdventureApp.UI.Web.Client\ppedv.AdventureApp.UI.Web.Client.csproj", "{0BF4D818-13BD-488E-925D-1AE0688DD318}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{B9332DB6-118F-4959-88BE-D55DEC628D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9332DB6-118F-4959-88BE-D55DEC628D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9332DB6-118F-4959-88BE-D55DEC628D67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77AF4C80-7A6A-49D5-B473-F71ED92E8C9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77AF4C80-7A6A-49D5-B473-F71ED92E8C9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77AF4C80-7A6A-49D5-B473-F71ED92E8C9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77AF4C80-7A6A-49D5-B473-F71ED92E8C9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BF4D818-13BD-488E-925D-1AE0688DD318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BF4D818-13BD-488E-925D-1AE0688DD318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BF4D818-13BD-488E-925D-1AE0688DD318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BF4D818-13BD-488E-925D-1AE0688DD318}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

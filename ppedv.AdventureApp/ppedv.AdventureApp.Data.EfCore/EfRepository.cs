@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ppedv.AdventureApp.Model.Contracts;
 using ppedv.AdventureApp.Model.Data.EfCore;
+using ppedv.AdventureApp.Model.DomainModel;
 
 namespace ppedv.AdventureApp.Data.EfCore
 {
@@ -11,7 +12,7 @@ namespace ppedv.AdventureApp.Data.EfCore
         public EfRepository(string conString)
         {
             var builder = new DbContextOptionsBuilder<AdventureWorks2019Context>();
-            builder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=AdventureWorks2019_DEV;Trusted_Connection=true;Encrypt=True;TrustServerCertificate=true");
+            builder.UseSqlServer(conString);
             context = new AdventureWorks2019Context(builder.Options);
         }
 
@@ -45,6 +46,11 @@ namespace ppedv.AdventureApp.Data.EfCore
         public void Update<T>(T entity) where T : class
         {
             context.Set<T>().Update(entity);
+        }
+
+        public IQueryable<Employee> GetEmployeesWithBusinessEntity()
+        {
+            return context.Set<Employee>().Include(x => x.BusinessEntity);
         }
     }
 }

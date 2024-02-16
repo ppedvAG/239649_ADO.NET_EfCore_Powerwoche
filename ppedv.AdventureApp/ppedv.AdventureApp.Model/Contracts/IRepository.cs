@@ -1,9 +1,13 @@
-﻿namespace ppedv.AdventureApp.Model.Contracts
+﻿using ppedv.AdventureApp.Model.DomainModel;
+
+namespace ppedv.AdventureApp.Model.Contracts
 {
     //https://deviq.com/design-patterns/repository-pattern
     //https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures
     public interface IRepository
     {
+        IQueryable<Employee> GetEmployeesWithBusinessEntity();
+
         T? GetById<T>(int id) where T : class;
 
         IQueryable<T> Query<T>() where T : class; 

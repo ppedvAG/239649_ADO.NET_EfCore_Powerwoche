@@ -1,0 +1,36 @@
+﻿@page "/employees"
+@using ppedv.AdventureApp.Model.Contracts
+@using ppedv.AdventureApp.Model.DomainModel
+@inject IRepository repo
+
+<h3>Employees</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>BirthDate</th>
+            <th>Job</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in employees)
+        {
+            <tr>
+                <td>@e.BusinessEntity?.FirstName @e.BusinessEntity?.LastName</td>
+                <td>@e.BirthDate</td>
+                <td>@e.JobTitle</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    IEnumerable<Employee> employees;
+
+    protected override async Task OnInitializedAsync()
+    {
+        //pfusch: weil Repo + EF employees = repo.Query<Employee>().Include(x => x.BusinessEntity).ToList();
+        employees = repo.GetEmployeesWithBusinessEntity().ToList();
+    }
+}
