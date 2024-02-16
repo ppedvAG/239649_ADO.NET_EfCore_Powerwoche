@@ -1,0 +1,6 @@
+@ppedv.AdventureApp.UI.API_HostAddress = http://localhost:5173
+
+GET {{ppedv.AdventureApp.UI.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
