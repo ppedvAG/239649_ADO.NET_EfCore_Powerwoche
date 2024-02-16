@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using ppedv.AdventureApp.Model.DomainModel;
+using ppedv.AdventureApp.Model.DbModel;
 
 namespace ppedv.AdventureApp.Model.Data.EfCore;
 

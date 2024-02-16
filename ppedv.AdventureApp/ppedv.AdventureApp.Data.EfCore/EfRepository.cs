@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ppedv.AdventureApp.Model.Contracts;
 using ppedv.AdventureApp.Model.Data.EfCore;
-using ppedv.AdventureApp.Model.DomainModel;
+using ppedv.AdventureApp.Model.DbModel;
 
 namespace ppedv.AdventureApp.Data.EfCore
 {
@@ -15,8 +15,6 @@ namespace ppedv.AdventureApp.Data.EfCore
             builder.UseSqlServer(conString);
             context = new AdventureWorks2019Context(builder.Options);
         }
-
-
 
         public void Add<T>(T entity) where T : class
         {

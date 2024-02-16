@@ -2,7 +2,8 @@
 using ppedv.AdventureApp.Data.EfCore;
 using ppedv.AdventureApp.Logic;
 using ppedv.AdventureApp.Model.Contracts;
-using ppedv.AdventureApp.Model.DomainModel;
+using ppedv.AdventureApp.Model.DbModel;
+
 
 Console.WriteLine("** AdventureApp v1.0 **");
 

@@ -1,5 +1,6 @@
 ﻿using ppedv.AdventureApp.Model.Contracts;
-using ppedv.AdventureApp.Model.DomainModel;
+using ppedv.AdventureApp.Model.DbModel;
+
 
 namespace ppedv.AdventureApp.Logic
 {
