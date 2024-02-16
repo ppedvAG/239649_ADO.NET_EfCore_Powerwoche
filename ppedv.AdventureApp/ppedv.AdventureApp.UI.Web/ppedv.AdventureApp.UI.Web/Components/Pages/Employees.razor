@@ -1,9 +1,10 @@
 ﻿@page "/employees"
+@rendermode InteractiveServer
 @using ppedv.AdventureApp.Model.Contracts
 @using ppedv.AdventureApp.Model.DbModel
-
 @* @using Microsoft.EntityFrameworkCore *@
 @inject IRepository repo
+@inject NavigationManager _nav
 
 <h3>Employees</h3>
 
@@ -13,6 +14,7 @@
             <th>Name</th>
             <th>BirthDate</th>
             <th>Job</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -22,9 +24,13 @@
                 <td>@e.BusinessEntity?.FirstName @e.BusinessEntity?.LastName</td>
                 <td>@e.BirthDate</td>
                 <td>@e.JobTitle</td>
+                <td>
+                    <button @onclick="@( () => _nav.NavigateTo($"/BirthDayCard/{e.BusinessEntityId}") )">🃏</button>
+                </td>
             </tr>
         }
     </tbody>
+
 </table>
 
 @code {

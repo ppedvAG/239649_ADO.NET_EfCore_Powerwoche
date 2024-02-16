@@ -1,0 +1,15 @@
+﻿@page "/BirthDayCard"
+@page "/BirthDayCard/{employeeId}"
+<h3>BirthDayCard 🎈🎈</h3>
+
+<p>Emploaaayee: @EmployeeId</p>
+ 
+<iframe src="https://file-examples.com/storage/fe4f937cfa65cf464ad43f8/2017/10/file-sample_150kB.pdf" width="800" height="600" frameborder="0">
+    
+</iframe>
+
+@code {
+
+    [Parameter]
+    public string? EmployeeId { get; set; }
+}
