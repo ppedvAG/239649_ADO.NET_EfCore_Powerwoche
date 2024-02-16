@@ -1,15 +1,43 @@
 ﻿@page "/BirthDayCard"
 @page "/BirthDayCard/{employeeId}"
+@using ppedv.AdventureApp.Logic
+@using ppedv.AdventureApp.Model.Contracts
+@inject IRepository repo
+@inject EmployeeBirthdayCardService ebcs;
+@inject PdfCreator pdfCreator;
 <h3>BirthDayCard 🎈🎈</h3>
 
-<p>Emploaaayee: @EmployeeId</p>
- 
-<iframe src="https://file-examples.com/storage/fe4f937cfa65cf464ad43f8/2017/10/file-sample_150kB.pdf" width="800" height="600" frameborder="0">
-    
+<p>Employee: @EmployeeId</p>
+<p>@info</p>
+
+<iframe src="/pdf/@pdfFileName" width="800" height="600" frameborder="0">
 </iframe>
+
 
 @code {
 
     [Parameter]
     public string? EmployeeId { get; set; }
+
+    private string info;
+
+    private string pdfFileName;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (int.TryParse(EmployeeId, out var empId))
+        {
+            var card = ebcs.CreateCard(empId);
+            info = card.Title + " " + card.Name;
+            using var pdfStream = pdfCreator.CreateBirthDayCardPdf(card);
+            var fileName = $"BC_{ empId}_{ DateTime.Now:yyyy}.pdf";
+            using var sw = new StreamWriter($"wwwroot/pdf/{fileName}");
+            pdfStream.CopyTo(sw.BaseStream);
+            pdfFileName = fileName;
+        }
+        else
+        {
+            info = $"{EmployeeId} konnte nicht als int geparsed werden";
+        }
+    }
 }

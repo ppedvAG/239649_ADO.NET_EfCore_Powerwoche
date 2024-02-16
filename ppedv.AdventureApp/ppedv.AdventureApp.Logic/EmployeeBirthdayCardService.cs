@@ -24,7 +24,7 @@ namespace ppedv.AdventureApp.Logic
             card.Employee = emp;
             card.Title = "HAPPY BIRTHDAY";
             card.Name = emp.BusinessEntity?.FirstName + " " + emp.BusinessEntity?.LastName;
-            card.Text = $@"Dear ${card.Name},
+            card.Text = $@"Dear {card.Name},
 
 On this special day, I wanted to take a moment to celebrate you and all the wonderful things that make you who you are. You bring light and positivity wherever you go, and your presence is truly a gift to those around you.
 

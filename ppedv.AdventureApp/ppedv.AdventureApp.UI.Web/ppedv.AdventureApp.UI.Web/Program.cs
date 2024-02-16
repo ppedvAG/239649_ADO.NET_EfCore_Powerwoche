@@ -1,5 +1,7 @@
 using ppedv.AdventureApp.Data.EfCore;
+using ppedv.AdventureApp.Logic;
 using ppedv.AdventureApp.Model.Contracts;
+using ppedv.AdventureApp.UI.Web;
 using ppedv.AdventureApp.UI.Web.Client.Pages;
 using ppedv.AdventureApp.UI.Web.Components;
 using System.Linq.Expressions;
@@ -15,6 +17,9 @@ builder.Services.AddRazorComponents()
 var conString = builder.Configuration["conString"];
 
 builder.Services.AddScoped<IRepository>(x => new EfRepository(conString));
+builder.Services.AddScoped<EmployeeBirthdayCardService>();
+builder.Services.AddScoped<EmployeeService>();
+builder.Services.AddScoped<PdfCreator>();
 
 var app = builder.Build();
 

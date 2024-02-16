@@ -8,11 +8,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\NewFolder\**" />
+    <Content Remove="wwwroot\NewFolder\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder\**" />
+    <None Remove="wwwroot\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="fonts\verdana.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\verdanab.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\verdanai.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\verdanaz.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\ppedv.AdventureApp.Data.EfCore\ppedv.AdventureApp.Data.EfCore.csproj" />
     <ProjectReference Include="..\..\ppedv.AdventureApp.Logic\ppedv.AdventureApp.Logic.csproj" />
     <ProjectReference Include="..\..\ppedv.AdventureApp.Model\ppedv.AdventureApp.Model.csproj" />
     <ProjectReference Include="..\ppedv.AdventureApp.UI.Web.Client\ppedv.AdventureApp.UI.Web.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.2" />
+    <PackageReference Include="PDFsharp" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
