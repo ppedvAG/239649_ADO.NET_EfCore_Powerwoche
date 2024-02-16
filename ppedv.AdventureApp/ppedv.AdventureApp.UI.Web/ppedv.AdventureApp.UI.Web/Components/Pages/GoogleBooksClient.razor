@@ -1,0 +1,57 @@
+﻿@page "/books"
+@rendermode InteractiveServer
+
+<h3>GoogleBooksClient</h3>
+
+<InputText @bind-Value="suchText" style="Text" DisplayName="Suche" />
+<button @onclick="@Such">Such</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Titel</th>
+            <th>Price</th>
+            <th>Authors</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (result != null)
+            @foreach (var b in result?.items)
+            {
+                <tr>
+                    <td>@b.volumeInfo.title</td>
+                    <td>@b.saleInfo.listPrice?.amount</td>
+                    @if (b.volumeInfo.authors == null)
+                    {
+                        <td>--</td>
+                    }
+                    else
+                    {
+                        <td>@string.Join(" ,", b.volumeInfo?.authors)</td>
+                    }
+                    <td>@b.volumeInfo.description</td>
+                </tr>
+            }
+    </tbody>
+</table>
+
+
+@code {
+    string suchText = "efcore";
+
+    BooksResult result;
+
+    void Such()
+    {
+        var url = $"https://www.googleapis.com/books/v1/volumes?q={suchText}";
+
+        var http = new HttpClient();
+        var json = http.GetStringAsync(url).Result;
+
+        result = System.Text.Json.JsonSerializer.Deserialize<BooksResult>(json);
+
+    }
+
+
+}
